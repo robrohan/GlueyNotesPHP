@@ -1,0 +1,103 @@
+/* Reset all browser's css */
+@import url("MasterReset.css");
+
+/* form validation */
+@import url("Validation.css");
+
+@import url('Widgets.css');
+
+/* Example CSS file for MvCphp Framework */
+body {
+	background-color: #666;
+	color: #000;
+	text-align: center;
+}
+
+#contents {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right:auto;
+	margin-left:auto;
+	width: 600px;
+	padding: 10px;
+	background-color: #FFF;
+	color: #000;
+	text-align: left;
+}
+
+h1 {
+	color: #333;
+	background-color: transparent;
+	font-family: georgia, times, "times new roman", serif;
+	font-size: 20px;
+}
+
+p {
+	color: #333;
+	background-color: transparent;
+	font-family: georgia, times, "times new roman", serif;
+	font-size: 1em;
+}
+
+.code {
+	color: #339;
+	background-color: transparent;
+	font-family: monaco, courier, serif;
+	font-size: 0.9em;
+	padding-left: 40px;
+}
+
+.error {
+	padding: 10px;
+	font-weight: bold;
+}
+
+a {
+	color: #666666;
+}
+
+.formholder {
+	text-align: left; 
+	margin-left: 200px; 
+	padding-bottom: 40px;
+}
+
+.copyholder {
+	text-align: right; 
+	margin-top: 50px;
+}
+
+.smalllogo, .largelogo {
+	border: 0;
+}
+
+#termsofservice {
+	font-size: 10px; 
+	width: 300px; 
+	margin-top: 5px; 
+	visibility: hidden; 
+	display: none;
+}
+
+/* form input errors and clearing - used with SimpleValidation.js */
+.inputClear{;}
+
+.inputError {
+	border: 1px solid red;
+}
+
+.small {
+	font-size: .7em;
+}
+
+.main_button_bar {
+	height: 30px; 
+	width: 350px; 
+	margin-left: 25%;
+}
+
+.ad_area {
+	margin-top: 10px;
+	text-align: center; 
+	width: 100%;
+}

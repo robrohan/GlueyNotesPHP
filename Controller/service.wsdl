@@ -1,0 +1,289 @@
+<?xml version="1.0"?>
+<definitions name="GlueyNotesCore" targetNamespace="urn:GlueyNotesCore" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 	
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:tns="urn:GlueyNotesCore" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns="http://schemas.xmlsoap.org/wsdl/">
+	
+	<!-- /////////////// TYPES ////////////////////// -->
+	<types xmlns="http://schemas.xmlsoap.org/wsdl/">
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:GlueyNotesCore">
+			<complexType name="ArrayOfStrings">
+				<complexContent>
+					<restriction base="SOAP-ENC:Array">
+						<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="xsd:string[]" />
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="Position">
+				<all>
+					<element name="level" type="xsd:int" />
+					<element name="start_offset" type="xsd:int" />
+					<element name="end_offset" type="xsd:int" />
+				</all>
+			</complexType>
+			<complexType name="GlueyItem">
+				<all>
+					<element name="start_offset" type="xsd:int" />
+					<element name="end_offset" type="xsd:int" />
+					<element name="title" type="xsd:string" />
+				</all>
+			</complexType>
+			<complexType name="GlueySection">
+				<all>
+					<element name="list" type="xsd:string" />
+					<element name="start_offset" type="xsd:int" />
+					<element name="end_offset" type="xsd:int" />
+				</all>
+			</complexType>
+			<complexType name="FileWithMeta">
+				<all>
+					<element name="list" type="xsd:string" />
+					<element name="contents" type="xsd:string" />
+					<element name="hash" type="xsd:string" />
+				</all>
+			</complexType>
+			<complexType name="ContextSearch">
+				<all>
+					<element name="list" type="xsd:string" />
+					<element name="context" type="xsd:string" />
+				</all>
+			</complexType>
+			<complexType name="PingIn">
+				<all>
+					<element name="text" type="xsd:string" />
+				</all>
+			</complexType>
+			<complexType name="PingOut">
+				<all>
+					<element name="stuff" type="xsd:string" />
+				</all>
+			</complexType>
+			<complexType name="GlueyItemArray">
+				<complexContent>
+					<restriction base="SOAP-ENC:Array">
+						<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:GlueyItem[]" />
+					</restriction>
+				</complexContent>
+			</complexType>
+		</schema>
+	</types>
+	
+	<!-- /////////////// MESSAGES ////////////////////// -->
+	<message name="LoginRequest">
+		<part name="username" type="xsd:string" />
+		<part name="password" type="xsd:string" />
+	</message>
+	
+	<message name="LoginResponse">
+		<part name="session_key" type="xsd:string" />
+	</message>
+	
+	<message name="GetSectionRequest">
+		<part name="key" type="xsd:string" />
+		<part name="position" type="tns:Position" />
+	</message>
+	
+	<message name="GetSectionResponse">
+		<part name="items" type="tns:GlueyItemArray" />
+	</message>
+	
+	<message name="GetFileTextRequest">
+		<part name="key" type="xsd:string" />
+		<part name="section" type="tns:GlueySection" />
+	</message>
+
+	<message name="GetFileTextResponse">
+		<part name="text" type="tns:ArrayOfStrings" />
+	</message>
+	
+	<message name="GetFileRequest">
+		<part name="key" type="xsd:string" />
+		<part name="section" type="tns:GlueySection" />
+	</message>
+	
+	<message name="GetFileResponse">
+		<part name="list" type="tns:FileWithMeta" />
+	</message>
+	
+	<message name="SaveFileRequest">
+		<part name="key" type="xsd:string" />
+		<part name="file" type="tns:FileWithMeta" />
+	</message>
+	
+	<message name="SaveFileResponse">
+		<part name="list" type="tns:FileWithMeta" />
+	</message>
+	
+	<message name="TickItemRequest">
+		<part name="key" type="xsd:string" />
+		<part name="section" type="tns:GlueySection" />
+	</message>
+	
+	<message name="TickItemResponse">
+		<part name="worked" type="xsd:boolean" />
+	</message>
+
+	<message name="GetContextRequest">
+		<part name="key" type="xsd:string" />
+		<part name="context" type="tns:ContextSearch" />
+	</message>
+	
+	<message name="GetContextResponse">
+		<part name="result" type="tns:GlueyItemArray" />
+	</message>
+	
+	<message name="PingRequest">
+		<part name="pingin" type="tns:PingIn" />
+	</message>
+	
+	<message name="PingResponse">
+		<part name="pingout" type="tns:PingOut" />
+	</message>
+
+	<!-- /////////////// PORT TYPE ////////////////////// -->
+	<portType name="GlueyNotesCorePort">
+		<operation name="GN_Login">
+			<input message="tns:LoginRequest" />
+			<output message="tns:LoginResponse" />
+		</operation>
+		<operation name="GN_GetSection">
+			<input message="tns:GetSectionRequest" />
+			<output message="tns:GetSectionResponse" />
+		</operation>
+		<operation name="GN_GetFileText">
+			<input message="tns:GetFileTextRequest" />
+			<output message="tns:GetFileTextResponse" />
+		</operation>
+		<operation name="GN_GetFile">
+			<input message="tns:GetFileRequest" />
+			<output message="tns:GetFileResponse" />
+		</operation>
+		<operation name="GN_SaveFile">
+			<input message="tns:SaveFileRequest" />
+			<output message="tns:SaveFileResponse" />
+		</operation>
+		<operation name="GN_TickItem">
+			<input message="tns:TickItemRequest" />
+			<output message="tns:TickItemResponse" />
+		</operation>
+		<operation name="GN_GetContext">
+			<input message="tns:GetContextRequest" />
+			<output message="tns:GetContextResponse" />
+		</operation>
+		<operation name="GN_Ping">
+			<input message="tns:PingRequest" />
+			<output message="tns:PingResponse" />
+		</operation>
+	</portType>
+	
+	<!-- /////////////// BINDING ////////////////////// -->
+	<binding name="GlueyNotesCoreBinding" type="tns:GlueyNotesCorePort">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="GN_Login">
+			<soap:operation soapAction="urn:GlueyNotesCore#GlueyNotesCore#Login" />
+			<input>
+				<soap:body use="encoded" namespace="urn:GlueyNotesCore" 
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:GlueyNotesCore" 
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+
+		<operation name="GN_GetSection">
+			<soap:operation soapAction="urn:GlueyNotesCore#GlueyNotesCore#GetSection" />
+			<input>
+				<soap:body use="encoded" namespace="urn:GlueyNotesCore" 
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:GlueyNotesCore" 
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+
+		<operation name="GN_GetFileText">
+			<soap:operation soapAction="urn:GlueyNotesCore#GlueyNotesCore#GetFileText" 	/>
+			<input>
+				<soap:body use="encoded" namespace="urn:GlueyNotesCore" 	
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:GlueyNotesCore" 
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+
+		<operation name="GN_GetFile">
+			<soap:operation soapAction="urn:GlueyNotesCore#GlueyNotesCore#GetFile" />
+			<input>
+				<soap:body use="encoded" namespace="urn:GlueyNotesCore" 
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:GlueyNotesCore" 
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		
+		<operation name="GN_SaveFile">
+			<soap:operation soapAction="urn:GlueyNotesCore#GlueyNotesCore#SaveFile" />
+			<input>
+				<soap:body use="encoded" namespace="urn:GlueyNotesCore" 
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:GlueyNotesCore" 
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		
+		<operation name="GN_TickItem">
+			<soap:operation soapAction="urn:GlueyNotesCore#GlueyNotesCore#TickItem" />
+			<input>
+				<soap:body use="encoded" namespace="urn:GlueyNotesCore" 
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:GlueyNotesCore" 
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		
+		<operation name="GN_GetContext">
+			<soap:operation soapAction="urn:GlueyNotesCore#GlueyNotesCore#GetContext" />
+			<input>
+				<soap:body use="encoded" namespace="urn:GlueyNotesCore" 
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:GlueyNotesCore" 
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		
+		<operation name="GN_Ping">
+			<soap:operation soapAction="urn:GlueyNotesCore#GlueyNotesCore#Ping" />
+			<input>
+				<soap:body use="encoded" namespace="urn:GlueyNotesCore" 
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:GlueyNotesCore" 
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+	</binding>
+	
+	<!-- /////////////// SERVICE ////////////////////// -->
+	<service name="GlueyNotesCoreService">
+		<documentation />
+		<port name="GlueyNotesCorePort" binding="tns:GlueyNotesCoreBinding">
+			<soap:address location="http://glueynotes.com/Service/Serve" />
+		</port>
+	</service>
+</definitions>

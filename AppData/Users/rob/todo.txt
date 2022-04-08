@@ -1,0 +1,9 @@
+* item 1 @phone
+** subitem 2 with text @computer
+this is extra information
+* asfd new blarg @computer
+X new @computer
+X blarg @computer
+* thing @home
+* other thing @phone
+X yet more stuff @home 

@@ -1,0 +1,233 @@
+body {
+	margin: 0;
+	font-family: Helvetica;
+	background: #FFFFFF;
+	color: #000000;
+	overflow: hidden;
+	-webkit-text-size-adjust: none;
+}
+
+body > h1 {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 10px;
+	line-height: 20px;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0;
+	text-overflow: ellipsis;
+	color: #FFFFFF;
+	background: url(/View/Style/Images/iPhoneToolbar.png) #6d84a2 repeat-x;
+	border-bottom: 1px solid #2d3642;
+}
+
+body > h2 {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 3px;
+	line-height: 10px;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0;
+	text-overflow: ellipsis;
+	color: #FFFFFF;
+	background: url(/View/Style/Images/iPhoneToolbar.png) #6d84a2 repeat-x;
+	border-bottom: 1px solid #2d3642;
+}
+
+.button {
+	position: absolute;
+	-webkit-border-image: url(/View/Style/Images/iPhoneButton.png) 0 5 0 5;
+	-webkit-border-radius: 0;
+	border-width: 0 5px 0 5px;
+	padding: 0;
+	height: 28px;
+	line-height: 28px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0;
+	text-decoration: none;
+	background: none;
+}
+
+.button_pos_center_left {
+	
+}
+
+.button_pos_center {
+	top: 8px;
+	left: 132px;
+}
+
+.button_pos_center_right {
+
+}
+
+.button_pos_far_right {
+	top: 8px;
+	right: 6px;
+}
+
+.button_pos_far_left {
+	top: 8px;
+	left: 6px;
+}
+
+#homeButton {
+	position: absolute;
+	display: none;
+	right: auto;
+	-webkit-border-image: url(/View/Style/Images/iPhoneBackButton.png) 0 8 0 14;
+	border-width: 0 8px 0 14px;
+}
+
+.goButton {
+	-webkit-border-image: url(/View/Style/Images/iPhoneGoButton.png) 0 5 0 5;
+	border-width: 0 5px;
+}
+
+body > div,
+body > form,
+body > ul {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 57px;
+	width: 100%;
+	min-height: 418px;
+	margin: 0;
+	padding: 0;
+}
+
+body > *[selected="true"] {
+	display: block;
+}
+
+body > ul > li {
+	margin: 0;
+	border-bottom: 1px solid #E0E0E0;
+	padding: 0;
+	font-size: 20px;
+	font-weight: bold;
+	list-style: none;
+}
+
+body > ul > li.projItem {
+	background: url(/View/Style/Images/iPhoneArrow.png) no-repeat right center;
+}
+
+body > ul > li > a, 
+body > ul > li > .todoItemText,
+body > ul > li > .todoItemTextChecked {
+	display: block;
+	padding: 8px 0px 8px 8px;
+	margin-left: 15px;
+	text-decoration: none;
+	color: inherit;
+}
+
+body > ul > li > .todoItemTextChecked {
+	color: #D3D3D3;
+	text-decoration: line-through;
+}
+
+.panel {
+	box-sizing: border-box;
+	padding: 10px;
+	background: #c8c8c8 url(/View/Style/Images/PinStripes.png);
+}
+
+.contextSelectorLabel {
+	margin: 0 10px 0 10px;
+	padding: 0;
+	font-size: 13px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0;
+	text-align: center;
+}
+
+#contextSelector {
+	width: 70%;
+}
+
+#itemInfoDisplay {
+	background-color: white; 
+	font-size: 17px; 
+	line-height: 22px;
+	padding: 4px;
+	border-width: 2px;
+	border-color: #D3D3D3;
+	border-style: solid;
+	-webkit-border-top-left-radius:      8px;
+	-webkit-border-top-right-radius:     8px;
+	-webkit-border-bottom-left-radius:   8px;
+	-webkit-border-bottom-right-radius:  8px;
+	overflow: auto;
+}
+/********************************************/
+
+.dialog {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	min-height: 468px;
+	z-index: 2;
+	background: rgba(0, 0, 0, 0.8);
+	padding: 0;
+	text-align: right;
+}
+
+fieldset {
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0;
+	border: none;
+	padding: 10px 6px;
+	background: url(/View/Style/Images/iPhoneToolbar.png) #7388a5 repeat-x;
+}
+
+fieldset > h1 {
+	margin: 0 10px 0 10px;
+	padding: 0;
+	font-size: 20px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0;
+	text-align: center;
+}
+
+label {
+	position: absolute;
+	margin: 14px 0 0 12px;
+	font-size: 14px;
+	color: #BBBBBB;
+}
+
+input[type="text"] {
+	width: 100%;
+	box-sizing: border-box;
+	margin: 6px 0 0 0;
+	padding: 6px 6px 6px 64px;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+input[type="checkbox"] {
+	width: 15px;
+}
+
+.todoMarkHolder {
+	z-index: 0;
+	float: left;
+	width: 15px;
+}
+
+.todoMark {
+	position: relative;
+	top: 5px;
+	left: 2px;
+}

@@ -1,0 +1,37 @@
+@import url('Widgets.css');
+
+body {
+	height: 99.5%;
+	width: 99.5%;
+	background: #c8c8c8 url('/View/Style/Images/PinStripes.png');
+}
+
+.clear {
+    overflow: hidden;
+    width: 100%;
+}
+
+.toolbar {
+	height: 5%;
+	min-height: 25px;
+	background: white;
+	border: 1px solid #c8c8c8;
+}
+
+#feedback_div {
+	font-size: 0.6em;
+	text-align: right;
+}
+
+.list_editor_holder {
+	height: 93%;
+	width: 100%;
+}
+
+#list_editor {
+	height: 100%; 
+	width: 100%; 
+	font-family: monaco, courier, monospaced; 
+	font-size: 0.8em;
+	/* background: url('Images/yellowback.jpg'); */
+}

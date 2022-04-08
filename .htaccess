@@ -1,0 +1,51 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+#RewriteBase /
+RewriteRule ^View/(.*)$ View/$1 [PT]
+RewriteRule ^(AppCore/Debug.css)$ $1 [PT]
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^([a-zA-Z0-9\/]+)/([a-zA-Z0-9]+)(.*)$ index.php?c=$1:$2&%1
+</IfModule>
+
+# Insert filter
+SetOutputFilter DEFLATE
+AddOutputFilterByType DEFLATE text/css text/html text/plain text/xml application/x-javascript
+
+# Netscape 4.x has some problems...
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+# Netscape 4.06-4.08 have some more problems
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+# MSIE masquerades as Netscape, but it is fine
+# BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+
+# NOTE: Due to a bug in mod_setenvif up to Apache 2.0.48
+# the above regex won't work. You can use the following
+# workaround to get the desired effect:
+BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
+
+# Make sure proxies don't deliver the wrong content
+Header append Vary User-Agent env=!dont-vary
+
+
+################################################################################
+# Standard HTTP errors. Add to or customize these 
+# to your hearts content
+#400	Bad Syntax
+ErrorDocument 400 /View/Errors/Error.html
+#401	Unauthorized
+ErrorDocument 401 /View/Errors/Error.html
+#402	Not Used (Payment Granted)
+ErrorDocument 402 /View/Errors/Error.html
+#403	Forbidden
+ErrorDocument 403 /View/Errors/Error.html
+#404	Not Found
+ErrorDocument 404 /View/Errors/Error.html
+#500	Internal Error
+ErrorDocument 500 /View/Errors/Error.html
+#501	Not Implemented
+ErrorDocument 501 /View/Errors/Error.html
+#502	Overloaded
+ErrorDocument 502 /View/Errors/Error.html
+#503	Gateway Timeout
+ErrorDocument 503 /View/Errors/Error.html
+################################################################################
